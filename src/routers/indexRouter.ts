@@ -4,7 +4,7 @@ const router = express.Router();
 
 //  get method
 router.get("/", (req: Request, res: Response, next: NextFunction):void => {
-  res.send("기본 구조 작업만 5번쨰 ^^;;;");
+  res.send("GET request");
 });
 //  post method
 router.post("/", (req: any, res: any) => {
