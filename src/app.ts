@@ -1,24 +1,24 @@
 import express from 'express';
 import indexrouter from './routers/indexRouter'
-const http = require('http')
-const app = express();
+import mongoose from 'mongoose'
 require('dotenv').config()
 
+const app = express();
+
 app.set('port', process.env.SERVER_PORT);
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use('/', indexrouter);
+
+const MONGO_URL = 'mongodb://localhost:27017';
+//"mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + process.env.DB_HOST
+
+mongoose
+    .connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {console.log('connected to mongoDB')})
+    .catch((e) => {console.log(e)})
 
 app.listen(app.get('port'), ():void =>{
   console.log(`server port is ${app.get('port')}`)
 })
-
-app.use(express.static('public'));
-
-app.use('/', indexrouter);
-
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + process.env.DB_HOST;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect((err:any):void => {
-  const collection = client.db("test").collection("devices");
-  console.log('mongoDB connection')
-  client.close();
-});
