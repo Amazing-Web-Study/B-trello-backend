@@ -17,7 +17,7 @@ const MONGO_URL = 'mongodb://localhost:27017'
 mongoose
     .connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {console.log('connected to mongoDB')})
-    .catch((e) => {console.log(e)})
+    .catch((e:any) => {console.log(e)})
 
 app.listen(app.get('port'), ():void =>{
   console.log(`server port is ${app.get('port')}`)
