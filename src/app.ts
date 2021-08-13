@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use('/', indexrouter)
 
-const MONGO_URL = 'mongodb://localhost:27017'
+const MONGO_URL = process.env.DB_IDPW + ''
 //"mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + process.env.DB_HOST
 
 mongoose
