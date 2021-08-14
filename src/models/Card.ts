@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const CardSchema = new mongoose.Schema({
-    list_id: { type: mongoose.Schema.Types.ObjectId, ref: 'List' },
+    list_id: [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }],
     content: { type: String },
     file: { type: String },
     state: { type: Number, required: true },
