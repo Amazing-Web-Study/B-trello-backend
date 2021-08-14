@@ -1,8 +1,7 @@
 import mongoose from 'mongoose'
-import Card from "./Card";
 
 const ListSchema = new mongoose.Schema({
-    user_id: { type: Number, required: true },
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref:'User' },
     title: { type: String, required: true },
     date: { type: Date, required: true }
 })
