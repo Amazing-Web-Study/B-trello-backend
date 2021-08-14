@@ -1,7 +1,8 @@
 import express from 'express';
 import indexrouter from './routers/indexRouter'
-import mongoose from 'mongoose'
-require('dotenv').config()
+const connect = require('./db/db')
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express();
 
@@ -11,13 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use('/', indexrouter)
 
-const MONGO_URL = process.env.DB_IDPW + ''
-//"mongodb+srv://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + process.env.DB_HOST
-
-mongoose
-    .connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {console.log('connected to mongoDB')})
-    .catch((e:any) => {console.log(e)})
+connect()
 
 app.listen(app.get('port'), ():void =>{
   console.log(`server port is ${app.get('port')}`)

@@ -1,10 +1,9 @@
-import {Schema} from "mongoose";
-
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const ListSchema = new mongoose.Schema({
-    _id: { type: Number, required: true, unique: true},
-    user_id: { type: Number, required: true, unique: true},
-    title: { type: String, required: true},
-    date: { type: Date, required: true}
+    user_id: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+    title: { type: String, required: true },
+    date: { type: Date, required: true }
 })
+
+module.exports = mongoose.model('List', ListSchema)

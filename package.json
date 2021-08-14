@@ -2,7 +2,7 @@
   "name": "trello_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "mongoose": "^5.13.7"
+    "mongoose": "^5.13.7",
+    "mongoose-auto-increment": "^5.0.1"
   }
 }
