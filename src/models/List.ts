@@ -2,13 +2,14 @@ import mongoose from 'mongoose'
 
 const ListSchema = new mongoose.Schema({
     user_id: { type: mongoose.Schema.Types.ObjectId, ref:'User' },
+    // user_id는 ref로 User 모델을 참조 하고 있으며 타입은 _id(ObjectId) 타입이다.
     title: { type: String, required: true },
-    date: { type: Date, required: true }
+    date: { type: Date }
 })
 
 const List = mongoose.model('List', ListSchema)
 // const list1 = new List({
-//     user_id: 2,
+//     user_id: new mongoose.Types.ObjectId(),
 //     title: '테스트아아아아',
 //     date: new Date()
 // })
@@ -20,4 +21,4 @@ const List = mongoose.model('List', ListSchema)
 //     .catch((err:any) => {
 //         console.error(err)
 //     })
-export default List
+module.exports = List

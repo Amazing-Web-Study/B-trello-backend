@@ -1,5 +1,5 @@
 import express from 'express';
-import indexrouter from './routers/indexRouter'
+const indexrouter = require('../src/routers/indexRouter')
 const connect = require('./db/db')
 import dotenv from 'dotenv'
 dotenv.config()
@@ -11,6 +11,9 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use('/', indexrouter)
+app.use((req: any, res: any) => {
+  res.header("Access-Control-Allow-Origin", "*")
+})
 
 connect()
 
