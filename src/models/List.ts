@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 
 const ListSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref:'User' },
-    // user_id는 ref로 User 모델을 참조 하고 있으며 타입은 _id(ObjectId) 타입이다.
+    user_id: { type: mongoose.Schema.Types.ObjectId },
+    // user_id 타입은 _id(ObjectId) 타입이다.
     title: { type: String, required: true },
     date: { type: Date }
 })
