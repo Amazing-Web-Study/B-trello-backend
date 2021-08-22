@@ -6,6 +6,8 @@ const CardSchema = new mongoose.Schema({
     file: { type: String },
     state: { type: Number, required: true },
     date: { type: Date }
+},{
+    versionKey: false
 })
 
 const Card = mongoose.model('Card', CardSchema)

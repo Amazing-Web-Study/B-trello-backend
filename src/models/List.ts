@@ -5,7 +5,9 @@ const ListSchema = new mongoose.Schema({
     // user_id 타입은 _id(ObjectId) 타입이다.
     title: { type: String, required: true },
     date: { type: Date }
-})
+},{
+    versionKey: false
+    })
 
 const List = mongoose.model('List', ListSchema)
 // const list1 = new List({
