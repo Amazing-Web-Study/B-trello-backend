@@ -19,7 +19,7 @@ router.post("/", (req:Request, res: Response):void => {
     const card = new Card({
         list_id: listId,
         content: req.body.content,
-        state: req.body.state,
+        state: 0,
         date: new Date()
     })
     card.save()
