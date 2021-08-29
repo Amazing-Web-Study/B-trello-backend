@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const router = express.Router();
 const Card = require('../../models/Card')
 
+
 router.get("/", (req: Request, res: Response):void => {
     Card.find((err:any, cards: any):void => {
         if (err) res.status(500).send({err: '백엔드 개발자에게 카톡주세요!(db find 오류)'})
