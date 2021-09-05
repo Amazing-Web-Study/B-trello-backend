@@ -32,4 +32,19 @@ router.post("/", (req:Request, res: Response):void => {
         })
 })
 
+router.delete('/:id', async (req: Request, res: Response) => {
+    const {id} = req.params
+    try{
+        await Card.findByIdAndDelete(id).exec()
+        console.log(id)
+        return res.status(204).end()
+    } catch(err) {
+        return res.status(500).json({error: err})
+    }
+})
+
+router.put('/:id', (req: Request, res: Response) => {
+
+})
+
 module.exports = router
