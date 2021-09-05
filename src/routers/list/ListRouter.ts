@@ -11,7 +11,6 @@ const listController = require('../../controllers/ListController')
 router.get("/:id", (req: Request, res: Response):void => {
     List.find((err:any, lists: any):void => {
         const {id} = req.params
-        console.log(lists)
         if (err) res.status(500).send({err: '백엔드 개발자에게 카톡주세요!(db find 오류)'})
         const filtering_list = lists.filter((a:any) => {
             return a.user_id === id

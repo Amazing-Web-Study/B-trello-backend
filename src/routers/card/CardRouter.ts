@@ -4,10 +4,14 @@ const router = express.Router();
 const Card = require('../../models/Card')
 
 
-router.get("/", (req: Request, res: Response):void => {
+router.get("/:id", (req: Request, res: Response):void => {
     Card.find((err:any, cards: any):void => {
+        const {id} = req.params
+        const filtering_cards = cards.filter((a:any) => {
+            return a.user_id === id
+        })
         if (err) res.status(500).send({err: '백엔드 개발자에게 카톡주세요!(db find 오류)'})
-        res.json(cards)
+        res.json(filtering_cards)
     })
 })
 
