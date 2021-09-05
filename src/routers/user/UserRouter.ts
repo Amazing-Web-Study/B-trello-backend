@@ -2,11 +2,11 @@ import express, { Request, Response, NextFunction } from "express"
 import mongoose from "mongoose";
 const router = express.Router();
 const User = require('../../models/User')
-const Controller = require('../../controllers/UserToken')
+// const Controller = require('../../controllers/UserToken')
 
 
-router.post("/sign-in", Controller.createToken)
-router.post("/sign-up", Controller.createUser)
+// router.post("/sign-in", Controller.createToken)
+// router.post("/sign-up", Controller.createUser)
 
 router.get("/", (req: Request, res: Response):void => {
     User.find((err:any, user: any):void => {
