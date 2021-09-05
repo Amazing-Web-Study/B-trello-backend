@@ -36,7 +36,6 @@ router.delete('/:id', async (req: Request, res: Response) => {
     const {id} = req.params
     try{
         await Card.findByIdAndDelete(id).exec()
-        console.log(id)
         return res.status(204).end()
     } catch(err) {
         return res.status(500).json({error: err})
@@ -44,7 +43,21 @@ router.delete('/:id', async (req: Request, res: Response) => {
 })
 
 router.put('/:id', (req: Request, res: Response) => {
+    const {id} = req.params
+    Card.findById(id, (err:any, card:any) => {
+        if (err) return res.status(500).json({error: err})
+        if(!Card) return res.status(400).json({error: '아이디에 맞는 카드가 없음!'})
+        if (req.body.content) card.content = req.body.content
+        if (req.body.state) card.state = req.body.state
+        if (req.body.file) card.file = req.body.file
+        if (req.body.list_id) card.list_id = req.body.list_id
+        console.log(card)
 
+        card.save((err:any) => {
+            if (err) res.status(500).json({error: '저장할때 에러남'})
+            res.json({message: 'card update'})
+        })
+    })
 })
 
 module.exports = router
