@@ -8,8 +8,9 @@ router.get("/:id", (req: Request, res: Response):void => {
     Card.find((err:any, cards: any):void => {
         const {id} = req.params
         const filtering_cards = cards.filter((a:any) => {
-            return a.user_id === id
+            return a.list_id === id
         })
+        console.log(filtering_cards)
         if (err) res.status(500).send({err: '백엔드 개발자에게 카톡주세요!(db find 오류)'})
         res.json(filtering_cards)
     })
@@ -18,7 +19,7 @@ router.get("/:id", (req: Request, res: Response):void => {
 router.post("/", (req:Request, res: Response):void => {
     let listId = req.body.list_id
     if (!req.body.list_id) {
-        listId = new mongoose.Types.ObjectId()
+        res.json({error: 'id가 안넘어옴'})
     }
     const card = new Card({
         list_id: listId,

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const CardSchema = new mongoose.Schema({
-    list_id: { type: mongoose.Schema.Types.ObjectId },
+    list_id: { type: String },
     content: { type: String },
     file: { type: String },
     state: { type: Number, required: true },
@@ -12,7 +12,7 @@ const CardSchema = new mongoose.Schema({
 
 const Card = mongoose.model('Card', CardSchema)
 // const card1 = new Card({
-//     list_id: new mongoose.Types.ObjectId(),
+//     list_id: '613493faa623701e68a5eb66',
 //     content: 'fkff',
 //     state: 1,
 //     date: new Date()
