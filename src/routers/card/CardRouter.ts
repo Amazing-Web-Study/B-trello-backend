@@ -10,7 +10,6 @@ router.get("/:id", (req: Request, res: Response):void => {
         const filtering_cards = cards.filter((a:any) => {
             return a.list_id === id
         })
-        console.log(filtering_cards)
         if (err) res.status(500).send({err: '백엔드 개발자에게 카톡주세요!(db find 오류)'})
         res.json(filtering_cards)
     })

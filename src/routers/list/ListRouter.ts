@@ -9,6 +9,7 @@ const listController = require('../../controllers/ListController')
 // router.get('/', listController.getAll)
 
 router.get("/:id", (req: Request, res: Response):void => {
+    console.log(req.cookies)
     List.find((err:any, lists: any):void => {
         const {id} = req.params
         if (err) res.status(500).send({err: '백엔드 개발자에게 카톡주세요!(db find 오류)'})
