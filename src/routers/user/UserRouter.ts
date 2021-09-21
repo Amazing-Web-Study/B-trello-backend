@@ -7,6 +7,7 @@ const Controller = require('../../controllers/UserToken')
 
 router.post("/sign-in", Controller.createToken)
 router.post("/sign-up", Controller.createUser)
+router.get('/check', Controller.check)
 
 router.get("/", (req: Request, res: Response):void => {
     User.find((err:any, user: any):void => {

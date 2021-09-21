@@ -16,9 +16,10 @@ exports.createToken = async function (req:Request, res:Response, next:NextFuncti
                 } else {
                     if (isMatch) {
                         const token = jwt.sign({
-                            id: user[0].id
+                            _id: user[0]._id,
+                            name: user[0].name
                         }, SECRET_KEY, {
-                            expiresIn: '1h'
+                            expiresIn: '7h'
                         })
 
                         res.cookie('user', token)
@@ -53,5 +54,38 @@ exports.createUser = async function (req:Request, res:Response, next:NextFunctio
         console.error(err)
         next(err)
     }
+}
+
+exports.check = (cookie:any) => {
+
+    if (!cookie) {
+        return {
+            success: false,
+            message: 'fail'
+        }
+    }
+
+    const p = new Promise((resolve, reject) => {
+        jwt.verify(cookie, SECRET_KEY, (err:any, decoded:any) => {
+            if(err) reject(err)
+            resolve(decoded)
+        })
+    })
+
+    const respond = (token:any) => {
+        return {
+            success: true,
+            info: token
+        }
+    }
+
+    const onError = (error:any) => {
+        return {
+            success: false,
+            message: error.message
+        }
+    }
+
+    return p.then(respond).catch(onError)
 }
 
