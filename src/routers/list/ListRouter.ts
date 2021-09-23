@@ -32,13 +32,11 @@ router.get("/", async (req: Request, res: Response) => {
     }
 })
 
-router.post("/", (req:Request, res: Response):void => {
-    let userId = req.body.user_id
-    if (!req.body.user_id) {
-        res.json({error: 'user_id가 빠졌습니다!'})
-    }
+router.post("/", async (req:Request, res: Response) => {
+    const id = await Controller.check(cookie.parse(req.headers.cookie).user)
+
     const list = new List({
-        user_id: userId,
+        user_id: id.info._id,
         title: req.body.title,
         date: new Date
     })
